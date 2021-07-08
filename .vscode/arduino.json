@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "port": "/dev/tty.usbserial-1420",
+    "port": "/dev/tty.usbserial-1410",
     "sketch": "trimPot.ino"
 }
