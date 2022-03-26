@@ -1,13 +1,13 @@
-
+// Set variable for Envelope pin
 const int soundPin = 0;
 
+// Ser variables for LEDs
 const int green1 = 3;
 const int green2 = 4;
 const int green3 = 5;
 const int yellow1 = 6;
 const int yellow2 = 7;
 const int red1 = 8;
-
 
 //variables for storing raw sound and scaled value
 int sound;
@@ -18,6 +18,7 @@ void setup() {
 
  Serial.begin(9600);
 
+// Define pinModes for LEDs
  pinMode(green1, OUTPUT);
  pinMode(green2, OUTPUT);
  pinMode(green3, OUTPUT);
@@ -36,15 +37,14 @@ void loop() {
  // map(sound, minsoundlevel, maxsoundlevel, case0, case6)
  scale = map(sound, 25, 175, 0, 6);
 
-
+// Audio Sensor console readout
  Serial.print(sound);
  Serial.print("   ");
  Serial.println(scale);
 
-
-  //switch case on scaled value
+  // switch case on scaled value
+  // Highs and Lows are flipped because I'm using a bus to send power to the LEDs.  Low means ON, HIGH means OFF
 switch (scale) {
-  //if 0 RGB = Blue
   case 0:
     digitalWrite(green1, LOW);
     digitalWrite(green2, HIGH);
@@ -53,7 +53,6 @@ switch (scale) {
     digitalWrite(yellow2, HIGH);
     digitalWrite(red1, HIGH);
     break;
-  //if 1 RGB = Green  
   case 1:
     digitalWrite(green1, LOW);
     digitalWrite(green2, LOW);
@@ -62,7 +61,6 @@ switch (scale) {
     digitalWrite(yellow2, HIGH);
     digitalWrite(red1, HIGH);
     break;
-  //if 2 RGB = Yellow  
   case 2:
     digitalWrite(green1, LOW);
     digitalWrite(green2, LOW);
@@ -71,7 +69,6 @@ switch (scale) {
     digitalWrite(yellow2, HIGH);
     digitalWrite(red1, HIGH);
     break;
-  //if 3 RGB = Red
   case 3:
     digitalWrite(green1, LOW);
     digitalWrite(green2, LOW);
@@ -96,7 +93,6 @@ switch (scale) {
     digitalWrite(yellow2, LOW);
     digitalWrite(red1, LOW);
     break;
-  //default off
   default:
     digitalWrite(green1, HIGH);
     digitalWrite(green2, HIGH);
@@ -106,5 +102,6 @@ switch (scale) {
     digitalWrite(red1, HIGH);
     break;
    }
-   delay(1000);
+
+   delay(100);
 }
